@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
+import { withRouter } from "react-router-dom";
+import { NavLink, Redirect } from "react-router-dom";
 
-import { NavLink } from "react-router-dom";
 import {
   TextField,
   FormControl,
@@ -18,7 +19,7 @@ import LoginContext from "../Context/LoginContext";
 import { getFirestore } from "../Dao/FirebaseDao";
 import Department from "../Models/Department";
 
-export default function Signup() {
+function Signup() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [department, setDepartment] = useState<Department>();
@@ -157,7 +158,15 @@ export default function Signup() {
               )
             }}
           />
-          <Button variant="contained" color="primary" type="submit">
+          <Button
+            variant="contained"
+            color="primary"
+            type="submit"
+            onClick={() => {
+              // handleSignUp();
+              return <Redirect to="/" />;
+            }}
+          >
             SIGNUP
           </Button>
         </FormControl>
@@ -166,3 +175,19 @@ export default function Signup() {
     </div>
   );
 }
+export default withRouter(Signup);
+// const SpecialButton = withRouter(({ history, path, text,email,password,department }) => {
+//   const {
+//     actions: { signUpWithEmailAndPassword }
+//   } = useContext<any>(LoginContext);
+//   return (
+//     <Button
+//       variant="contained"
+//       color="primary"
+//       type="submit"
+//       onClick={() => { signUpWithEmailAndPassword(email,password,department,history) }}
+//     >
+//       {text}
+//     </Button>
+//   )
+// });

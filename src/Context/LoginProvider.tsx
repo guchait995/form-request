@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import LoginContext from "./LoginContext";
 import { getAuth, getFirestore } from "../Dao/FirebaseDao";
-import { async } from "q";
+import { Redirect, Route } from "react-router-dom";
+import Login from "../Pages/Login";
 
 export interface LoginInfo {
   user: any;
@@ -25,6 +26,7 @@ export default function LoginProvider(props) {
         console.error(err);
       });
   };
+
   const signUpWithEmailAndPassword = async (email, password, department) => {
     // console.log("signup called");
     getAuth()
@@ -40,6 +42,7 @@ export default function LoginProvider(props) {
             .set({ department: department.name, email: email })
             .then(res => {
               console.log("user details saved");
+              // window.open("/")
             });
         }
       })

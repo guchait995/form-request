@@ -99,6 +99,8 @@ export default function Header() {
     setMobileMoreAnchorEl
   ] = React.useState<null | HTMLElement>(null);
 
+  const [approvalRequestList, setApprovalRequestList] = useState<Request[]>([]);
+
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
   const handleLogout = () => {
@@ -141,7 +143,7 @@ export default function Header() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem onClick={handleProfileMenuOpen}>
+      <MenuItem>
         <IconButton color="inherit">
           <AccountCircle />
         </IconButton>
@@ -149,7 +151,12 @@ export default function Header() {
       </MenuItem>
       <MenuItem>
         <IconButton color="inherit">
-          <Badge badgeContent={11} color="secondary">
+          <Badge
+            badgeContent={
+              approvalRequestList.length > 0 ? approvalRequestList.length : null
+            }
+            color="secondary"
+          >
             <NotificationsIcon />
           </Badge>
         </IconButton>
@@ -160,12 +167,11 @@ export default function Header() {
         <IconButton color="inherit">
           <img src={LogoutIcon} />
         </IconButton>
-        <p>Logout</p>
+        <p>Logout </p>
       </MenuItem>
     </Menu>
   );
   var isMounted = false;
-  const [approvalRequestList, setApprovalRequestList] = useState<Request[]>([]);
   useEffect(() => {
     if (!isMounted) {
       isMounted = true;

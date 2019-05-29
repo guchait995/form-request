@@ -2,6 +2,18 @@ body {
   margin: 0px;
   padding: 0px;
 }
+
+@font-face {
+  font-family: "Avenir LT Std 55 Roman";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Avenir LT Std 55 Roman"),
+    url("../Stylesheet/AvenirLTStd-Roman.woff") format("woff");
+}
+
+* {
+  font-family: "Avenir LT Std 55 Roman";
+}
 /* header */
 .header {
   background-color: bisque;
@@ -48,13 +60,16 @@ a {
   margin-right: auto;
   text-align: center;
 }
+.centre-box > form {
+  margin: 0px;
+}
 .box-heading {
   font-size: 22px;
   font-weight: 500;
 }
 .request-list {
   margin-top: 10px;
-  height: 80vh;
+  height: 75vh;
   overflow-y: scroll;
 }
 .each-request {
@@ -96,4 +111,24 @@ a {
 }
 .approve-button > button {
   margin-left: 10px;
+}
+
+/* loadingpage */
+.full-page {
+  height: 100vh;
+  widows: 100vw;
+}
+
+.page-centre {
+}
+
+.loading {
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  top: 50vh;
+  left: 50vw;
+  margin-top: -25px;
+  margin-left: -25px;
+  content: url("../icons/ripple.svg");
 }

@@ -158,7 +158,7 @@ export default function Header() {
 
       <MenuItem onClick={handleLogout}>
         <IconButton color="inherit">
-          <img src={LogoutIcgiton} />
+          <img src={LogoutIcon} />
         </IconButton>
         <p>Logout</p>
       </MenuItem>

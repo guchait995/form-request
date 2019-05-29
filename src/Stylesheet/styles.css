@@ -1,0 +1,99 @@
+body {
+  margin: 0px;
+  padding: 0px;
+}
+/* header */
+.header {
+  background-color: bisque;
+}
+a {
+  text-decoration: none;
+}
+
+.main-body {
+  margin: 10px;
+}
+.header-link {
+  color: white;
+  margin-left: 20px;
+}
+
+.header-link:hover {
+  color: coral;
+}
+
+/* scrollbar */
+.centre-box > *::-webkit-scrollbar {
+  width: 5px;
+  height: 1px;
+}
+
+.centre-box > *::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgb(255, 255, 255);
+  border-radius: 2px;
+  margin-top: 5px;
+  border-style: hidden;
+}
+.centre-box > *::-webkit-scrollbar-thumb {
+  background-color: #03284ead;
+  outline: 1px solid #03284ec7;
+  border-radius: 2px;
+  border-style: hidden;
+}
+
+.centre-box {
+  margin: 20px;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.box-heading {
+  font-size: 22px;
+  font-weight: 500;
+}
+.request-list {
+  margin-top: 10px;
+  height: 80vh;
+  overflow-y: scroll;
+}
+.each-request {
+  box-shadow: 0px 2px 5px 2px rgb(180, 180, 180);
+  border-radius: 10px;
+  text-align: left;
+  padding: 10px;
+  margin: 5px;
+  margin-top: 10px;
+}
+.request-to-email {
+  font-weight: 700;
+}
+.request-to-email > span {
+  font-weight: 400;
+}
+.request-from-email {
+  font-weight: 700;
+}
+.request-from-email > span {
+  font-weight: 400;
+}
+.request-status {
+  font-weight: 700;
+}
+.request-status > span {
+  font-weight: 400;
+}
+.request-department {
+  font-weight: 700;
+}
+.request-department > span {
+  font-weight: 400;
+}
+/* approve-button */
+.approve-button {
+  text-align: right;
+  margin-top: 10px;
+}
+.approve-button > button {
+  margin-left: 10px;
+}

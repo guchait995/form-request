@@ -8,7 +8,8 @@ import {
   LOGIN_EMAIL_NOT_FOUND,
   SNACKBAR_TIMEOUT,
   LOGIN_FAILED_MESSAGE,
-  SIGNUP_EMAIL_ALREADY_FOUND
+  SIGNUP_EMAIL_ALREADY_FOUND,
+  WEAK_PASSWORD_MESSAGE
 } from "../AppConstants";
 
 export interface LoginInfo {
@@ -59,15 +60,24 @@ export default function LoginProvider(props) {
             .set({ department: department.name, email: email })
             .then(res => {
               console.log("user details saved");
-              // window.open("/")
             });
+          getFirestore()
+            .collection("users")
+            .doc(email)
+            .set({ department: department.name, uid: firebaseUser.user.uid });
         }
       })
       .catch(err => {
         console.error(err);
-        if (err.code == "auth/email-already-in-use") {
+        // if (err.code === "auth/email-already-in-use") {
+        //   openSnackbar({
+        //     message: SIGNUP_EMAIL_ALREADY_FOUND,
+        //     timeout: SNACKBAR_TIMEOUT
+        //   });
+        // }
+        if (err.code === "auth/weak-password") {
           openSnackbar({
-            message: SIGNUP_EMAIL_ALREADY_FOUND,
+            message: WEAK_PASSWORD_MESSAGE,
             timeout: SNACKBAR_TIMEOUT
           });
         }

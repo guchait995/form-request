@@ -93,6 +93,7 @@ export default function Header() {
     state: { loginInfo },
     actions: { signOut }
   } = useContext<any>(LoginContext);
+  const [department, setDepartment] = useState();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [
     mobileMoreAnchorEl,
@@ -132,6 +133,7 @@ export default function Header() {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>{loginInfo.user.email}</MenuItem>
+      <MenuItem onClick={handleMenuClose}>{department}</MenuItem>
       <MenuItem onClick={handleLogout}>Logout</MenuItem>
     </Menu>
   );
@@ -148,6 +150,12 @@ export default function Header() {
           <AccountCircle />
         </IconButton>
         <p>{loginInfo.user.email}</p>
+      </MenuItem>
+      <MenuItem>
+        <IconButton color="inherit">
+          <AccountCircle />
+        </IconButton>
+        <p>{department ? department : null}</p>
       </MenuItem>
       <MenuItem>
         <IconButton color="inherit">
@@ -195,6 +203,17 @@ export default function Header() {
               }
             });
             setApprovalRequestList(requests);
+          }
+        });
+      getFirestore()
+        .collection("users")
+        .doc(loginInfo.user.email)
+        .onSnapshot(snapshot => {
+          if (snapshot) {
+            var data = snapshot.data();
+            if (data) {
+              setDepartment(data.department);
+            }
           }
         });
     }

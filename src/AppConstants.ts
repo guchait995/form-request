@@ -12,3 +12,5 @@ export const SIGNUP_EMAIL_ALREADY_FOUND =
 export const PENDING_REQUEST_ADDED_MESSAGE = "Added to Pending Request";
 export const REQUEST_APPROVED_MESSAGE = "Request Approved Successfully";
 export const REQUEST_REJECTED_MESSAGE = "Request Rejected Successfully";
+
+export const WEAK_PASSWORD_MESSAGE = "Password Should be Atleast 6 Charechters";

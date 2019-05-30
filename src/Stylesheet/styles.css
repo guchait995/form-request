@@ -136,3 +136,30 @@ a {
   margin-left: -25px;
   content: url("../icons/ripple.svg");
 }
+
+.table {
+  width: 70vw;
+  max-width: 400px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 20px;
+  max-height: 40vh;
+  overflow-y: scroll;
+}
+*::-webkit-scrollbar {
+  width: 5px;
+  height: 1px;
+}
+
+*::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgb(255, 255, 255);
+  border-radius: 2px;
+  margin-top: 5px;
+  border-style: hidden;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: #03284ead;
+  outline: 1px solid #03284ec7;
+  border-radius: 2px;
+  border-style: hidden;
+}

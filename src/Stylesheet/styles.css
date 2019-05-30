@@ -31,7 +31,11 @@ a {
 }
 
 .header-link:hover {
-  color: coral;
+  color: rgb(255, 185, 160);
+}
+
+.header-link-active {
+  color: rgb(174, 245, 245);
 }
 
 /* scrollbar */

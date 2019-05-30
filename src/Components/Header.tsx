@@ -209,13 +209,25 @@ export default function Header() {
             </NavLink>
           </Typography>
 
-          <NavLink to="/Pending" className="header-link">
+          <NavLink
+            to="/Pending"
+            className="header-link"
+            activeClassName="header-link-active"
+          >
             Pending
           </NavLink>
-          <NavLink to="/Approved" className="header-link">
+          <NavLink
+            to="/Approved"
+            className="header-link"
+            activeClassName="header-link-active"
+          >
             Approved
           </NavLink>
-          <NavLink to="/RequestForApproval" className="header-link">
+          <NavLink
+            to="/RequestForApproval"
+            className="header-link"
+            activeClassName="header-link-active"
+          >
             Request For Approval
           </NavLink>
 

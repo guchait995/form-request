@@ -35,10 +35,10 @@ export default function RequestView(props) {
         Sender Email : <span>{request.fromEmail}</span>
       </div>
       <div className="request-department">
-        Department: <span>{request.department}</span>
+        Department : <span>{request.department}</span>
       </div>
       <div className="request-department">
-        Time: <span>{formatTimeStamp(request.time)}</span>
+        Time : <span>{formatTimeStamp(request.time)}</span>
       </div>
       {viewModel === REQUEST_RAISE_FOR_APPROVAL ? (
         <div className="approve-button">

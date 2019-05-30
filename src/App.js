@@ -24,25 +24,38 @@ import { getAuth } from "./Dao/FirebaseDao";
 import CustomSnackbar from "./Components/CustomSnackbar";
 import CustomBootDialog from "./Components/CustomBootDialog";
 import LoadingPage from "./Components/LoadingPage";
+import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
 
 export default function App() {
+  const theme = createMuiTheme({
+    palette: {
+      primary: { main: "#3c894a" }, // Purple and green play nicely together.
+      secondary: { main: "#c94b0c" },
+      green: { main: "#35cc53" }
+    },
+    typography: {
+      useNextVariants: true
+    }
+  });
   return (
     <LoginProvider>
-      <CustomSnackbar />
-      <CustomBootDialog />
-      <Router>
-        <Switch>
-          <Route exact path="/" component={LoginWrapper} />
-          <Route path="/signup" component={SignWrapper} />
-          <PrivateRoute path="/Home" component={Home} />
-          <PrivateRoute
-            path="/RequestForApproval"
-            component={RequestApproval}
-          />
-          <PrivateRoute path="/Pending" component={Pending} />
-          <PrivateRoute path="/Approved" component={Approved} />
-        </Switch>
-      </Router>
+      <MuiThemeProvider theme={theme}>
+        <CustomSnackbar />
+        <CustomBootDialog />
+        <Router>
+          <Switch>
+            <Route exact path="/" component={LoginWrapper} />
+            <Route path="/signup" component={SignWrapper} />
+            <PrivateRoute path="/Home" component={Home} />
+            <PrivateRoute
+              path="/RequestForApproval"
+              component={RequestApproval}
+            />
+            <PrivateRoute path="/Pending" component={Pending} />
+            <PrivateRoute path="/Approved" component={Approved} />
+          </Switch>
+        </Router>
+      </MuiThemeProvider>
     </LoginProvider>
   );
 }

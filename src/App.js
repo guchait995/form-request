@@ -56,7 +56,6 @@ function SignWrapper(props) {
     if (!isMounted) {
       isMounted = true;
       getAuth().onAuthStateChanged(firebaseUser => {
-        console.log("auth changed");
         if (firebaseUser) {
           setLoginDetails({
             ...loginInfo,
@@ -93,7 +92,6 @@ function LoginWrapper(props) {
     if (!isMounted) {
       isMounted = true;
       getAuth().onAuthStateChanged(firebaseUser => {
-        console.log("auth changed");
         if (firebaseUser) {
           setLoginDetails({
             ...loginInfo,
@@ -131,7 +129,6 @@ function PrivateRoute({ component: Component, ...rest }) {
     if (!isMounted) {
       isMounted = true;
       getAuth().onAuthStateChanged(firebaseUser => {
-        console.log("auth changed");
         if (firebaseUser) {
           setLoginDetails({
             ...loginInfo,

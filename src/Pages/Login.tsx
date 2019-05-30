@@ -11,6 +11,7 @@ import {
   IconButton,
   Button
 } from "@material-ui/core";
+import { isValidEmail } from "../Utils/Util";
 export default function Login(props) {
   const {
     state: { loginInfo },
@@ -43,6 +44,14 @@ export default function Login(props) {
             onChange={value => {
               setEmail(value.currentTarget.value);
             }}
+            error={email != null ? !isValidEmail(email) : false}
+            helperText={
+              email != null
+                ? !isValidEmail(email)
+                  ? "Please enter a valid email"
+                  : null
+                : null
+            }
           />
           <TextField
             label="Password"

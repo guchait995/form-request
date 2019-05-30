@@ -10,7 +10,8 @@ import {
   Button,
   InputLabel,
   Select,
-  OutlinedInput
+  OutlinedInput,
+  MenuItem
 } from "@material-ui/core";
 
 import Visibility from "@material-ui/icons/Visibility";
@@ -18,6 +19,7 @@ import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import LoginContext from "../Context/LoginContext";
 import { getFirestore } from "../Dao/FirebaseDao";
 import Department from "../Models/Department";
+import { isValidEmail } from "../Utils/Util";
 
 function Signup() {
   const [email, setEmail] = useState();
@@ -74,6 +76,14 @@ function Signup() {
             autoComplete="email"
             margin="normal"
             variant="outlined"
+            error={email != null ? !isValidEmail(email) : false}
+            helperText={
+              email != null
+                ? !isValidEmail(email)
+                  ? "Please enter a valid email"
+                  : null
+                : null
+            }
             onChange={value => {
               setEmail(value.currentTarget.value);
             }}
@@ -87,6 +97,7 @@ function Signup() {
               value={department ? department.name : ""}
               onChange={e => {
                 var dept: any = e.currentTarget.value;
+                console.log(dept);
                 if (dept) {
                   setDepartment({ name: dept, users: null });
                 }
@@ -134,6 +145,18 @@ function Signup() {
                 </InputAdornment>
               )
             }}
+            error={
+              password != null && confirmPassword != null
+                ? password != confirmPassword
+                : false
+            }
+            helperText={
+              password != null && confirmPassword != null
+                ? password != confirmPassword
+                  ? "Passwords do not match"
+                  : ""
+                : false
+            }
           />
           <TextField
             label="Confirm Password"
@@ -149,7 +172,7 @@ function Signup() {
                   <IconButton
                     aria-label="Toggle password visibility"
                     onClick={() => {
-                      setShowPassword(!showConfirmPassword);
+                      setShowConfirmPassword(!showConfirmPassword);
                     }}
                   >
                     {!showConfirmPassword ? <VisibilityOff /> : <Visibility />}
@@ -157,14 +180,32 @@ function Signup() {
                 </InputAdornment>
               )
             }}
+            error={
+              password != null && confirmPassword != null
+                ? password != confirmPassword
+                : false
+            }
+            helperText={
+              password != null && confirmPassword != null
+                ? password != confirmPassword
+                  ? "Passwords do not match"
+                  : ""
+                : false
+            }
           />
           <Button
             variant="contained"
             color="primary"
             type="submit"
+            disabled={
+              !(password != null && confirmPassword != null
+                ? password == confirmPassword
+                  ? isValidEmail(email) && department != null
+                  : false
+                : false)
+            }
             onClick={() => {
-              // handleSignUp();
-              return <Redirect to="/" />;
+              handleSignUp();
             }}
           >
             SIGNUP

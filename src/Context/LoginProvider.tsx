@@ -3,6 +3,13 @@ import LoginContext from "./LoginContext";
 import { getAuth, getFirestore } from "../Dao/FirebaseDao";
 import { Redirect, Route } from "react-router-dom";
 import Login from "../Pages/Login";
+import { openSnackbar } from "../Components/CustomSnackbar";
+import {
+  LOGIN_EMAIL_NOT_FOUND,
+  SNACKBAR_TIMEOUT,
+  LOGIN_FAILED_MESSAGE,
+  SIGNUP_EMAIL_ALREADY_FOUND
+} from "../AppConstants";
 
 export interface LoginInfo {
   user: any;
@@ -24,6 +31,16 @@ export default function LoginProvider(props) {
       })
       .catch(err => {
         console.error(err);
+        if (err.code === "auth/user-not-found")
+          openSnackbar({
+            message: LOGIN_EMAIL_NOT_FOUND,
+            timeout: SNACKBAR_TIMEOUT
+          });
+        else
+          openSnackbar({
+            message: LOGIN_FAILED_MESSAGE,
+            timeout: SNACKBAR_TIMEOUT
+          });
       });
   };
 
@@ -48,6 +65,12 @@ export default function LoginProvider(props) {
       })
       .catch(err => {
         console.error(err);
+        if (err.code == "auth/email-already-in-use") {
+          openSnackbar({
+            message: SIGNUP_EMAIL_ALREADY_FOUND,
+            timeout: SNACKBAR_TIMEOUT
+          });
+        }
       });
   };
   const signOut = async () => {

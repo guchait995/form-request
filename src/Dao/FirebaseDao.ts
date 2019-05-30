@@ -1,6 +1,14 @@
 import * as firebase from "firebase";
 import Request from "../Models/Request";
-import { REQUEST_APPROVED, REQUEST_PENDING } from "../AppConstants";
+import {
+  REQUEST_APPROVED,
+  REQUEST_PENDING,
+  SNACKBAR_TIMEOUT,
+  PENDING_REQUEST_ADDED_MESSAGE,
+  REQUEST_APPROVED_MESSAGE,
+  REQUEST_REJECTED,
+  REQUEST_REJECTED_MESSAGE
+} from "../AppConstants";
 import { openSnackbar } from "../Components/CustomSnackbar";
 var firebaseConfig = {
   apiKey: "AIzaSyBzJ2wwNvohHWXxM1kO3Rfw4r_jownScdU",
@@ -27,7 +35,10 @@ export function raisedRequest(request: Request) {
       .doc(request.time.toString())
       .set(request)
       .then(res => {
-        openSnackbar({ message: "Added to Pending Request", timeout: 3000 });
+        openSnackbar({
+          message: PENDING_REQUEST_ADDED_MESSAGE,
+          timeout: SNACKBAR_TIMEOUT
+        });
         // console.log("pending request succesffuly added");
       })
       .catch(err => {
@@ -44,8 +55,25 @@ export function approveRequest(request: Request) {
       .set(editedRequest)
       .then(res => {
         openSnackbar({
-          message: "Request Approved Successfully",
-          timeout: 3000
+          message: REQUEST_APPROVED_MESSAGE,
+          timeout: SNACKBAR_TIMEOUT
+        });
+      })
+      .catch(err => {
+        console.error(err);
+      });
+}
+export function rejectRequest(request: Request) {
+  var editedRequest: Request = { ...request, status: REQUEST_REJECTED };
+  if (request && request.time)
+    getFirestore()
+      .collection("requests")
+      .doc(request.time.toString())
+      .set(editedRequest)
+      .then(res => {
+        openSnackbar({
+          message: REQUEST_REJECTED_MESSAGE,
+          timeout: SNACKBAR_TIMEOUT
         });
       })
       .catch(err => {

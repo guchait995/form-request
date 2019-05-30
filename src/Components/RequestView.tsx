@@ -4,7 +4,7 @@ import { getStatusFromCode, formatTimeStamp } from "../Utils/Util";
 import { REQUEST_PENDING, REQUEST_RAISE_FOR_APPROVAL } from "../AppConstants";
 import LoginContext from "../Context/LoginContext";
 import { Button } from "@material-ui/core";
-import { approveRequest } from "../Dao/FirebaseDao";
+import { approveRequest, rejectRequest } from "../Dao/FirebaseDao";
 
 export default function RequestView(props) {
   const request: Request = props.request;
@@ -20,6 +20,7 @@ export default function RequestView(props) {
   };
   const handleReject = () => {
     //handle Reject
+    rejectRequest(request);
   };
   return (
     <div className="each-request">
